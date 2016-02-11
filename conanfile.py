@@ -1,6 +1,6 @@
 from conans import ConanFile
 import os
-from conans.tools import download, unzip
+from conans.tools import download, unzip, check_sha256
 from conans import CMake
 
 class ArbitraryName(ConanFile):
@@ -15,6 +15,7 @@ class ArbitraryName(ConanFile):
     def source(self):
         zip_name = "catch.zip"
         download("https://github.com/philsquared/Catch/archive/v1.3.0.zip", zip_name)
+        check_sha256(zip_name, "dd7e7d8f58033bfcd77fe842b749ad6a1ba46e61a3f9dba970181c95fdfe5c5b")
         unzip(zip_name)
         os.unlink(zip_name)
 
