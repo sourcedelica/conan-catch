@@ -2,19 +2,19 @@ from conans import ConanFile
 import os
 from os import path
 from conans.tools import download, unzip, check_sha256
-from conans import CMake
+
 
 class ArbitraryName(ConanFile):
     name = "catch"
-    version = "1.5.0"
+    version = "1.5.9"
     branch = "stable"
     license = "Boost"
-    generators = "cmake"
-    url="http://github.com/TyRoXx/conan-catch"
+    url = "http://github.com/sourcedelica/conan-catch"
+    settings = None
 
-    ZIP_FOLDER_NAME = "Catch-1.5.0"
-    ZIP_URL_NAME = 'V1.5.0.zip'
-    FILE_SHA = '4c0559ef05f9caa08eb2357944135ec3752911627b5908636ce18399a41a12e6'
+    ZIP_FOLDER_NAME = "Catch-1.5.9"
+    ZIP_URL_NAME = 'v1.5.9.zip'
+    FILE_SHA = 'ce8ca733b04a1ed6a40927a5c2241b23ceee94cdbe130d67d8f9eb90537fc947'
 
     def source(self):
         zip_name = "catch.zip"
@@ -26,3 +26,6 @@ class ArbitraryName(ConanFile):
     def package(self):
         self.copy("catch.hpp", "include", path.join(self.ZIP_FOLDER_NAME, 'single_include'))
         self.copy("catch_with_main.hpp", "include", path.join(self.ZIP_FOLDER_NAME, 'include'))
+
+    def package_info(self):
+        self.cpp_info.libdirs = []
